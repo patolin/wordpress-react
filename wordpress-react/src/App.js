@@ -1,9 +1,13 @@
 import {Grommet, Box, ResponsiveContext} from 'grommet'
 import AppBar from './components/AppBar'
-import AppBody from './components/AppBody'
+import AppBodyPosts from './components/AppBodyPosts'
+import AppBodyPostSingle from './components/AppBodyPostSingle';
 import AppSidebar from './components/AppSidebar';
 import { useState } from 'react';
 import apiEndpoints from './constants'
+import {
+  BrowserRouter as Router, Routes, Route
+} from "react-router-dom"
 
 function App() {
 
@@ -26,17 +30,23 @@ function App() {
   return (
     <Grommet theme={tema} full>
       <ResponsiveContext.Consumer>
-        {(size) => (
-        <>
-        <AppBar switchSidebarHandle={switchSidebar}>
-          www.patolin.com
-        </AppBar>
-        <Box direction='row' flex overflow={{ horizontal: 'hidden'}}>
-          <AppBody apiEndpoints={apiEndpoints}/>
-          <AppSidebar show={showSidebar} size={size} switchSidebarHandle={switchSidebar}/>
-        </Box>
-        </>
-        )}
+          {(size) => (
+          <>
+          <AppBar switchSidebarHandle={switchSidebar}>
+            www.patolin.com
+          </AppBar>
+          <Box direction='row' flex overflow={{ horizontal: 'hidden'}}>
+            <Router>
+              <Routes>
+                  <Route path="/" element={<AppBodyPosts apiEndpoints={apiEndpoints}/>} />
+                  <Route path="/:postY/:postM/:postD/:postSlug" element={<AppBodyPostSingle apiEndpoints={apiEndpoints}/>} />
+                </Routes>    
+            </Router>
+            <AppSidebar show={showSidebar} size={size} switchSidebarHandle={switchSidebar}/>
+          </Box>
+          </>
+          )}
+        
       </ResponsiveContext.Consumer>
     </Grommet>
   );

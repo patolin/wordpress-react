@@ -1,6 +1,14 @@
 import {Box, Button, Collapsible, Layer} from 'grommet'
 import { FormClose } from 'grommet-icons';
 const AppSidebar = (props) => {
+
+    const SidebarContent = () => (
+        <p>
+            El famoso sidebar!
+        </p>
+    );
+
+        
     return (!props.show || props.size !== 'small') ? (
         <Collapsible direction='horizontal' open={props.show}>
             <Box 
@@ -11,7 +19,7 @@ const AppSidebar = (props) => {
                 align='center'
                 justify='center'
             >
-                app sidebar
+                <SidebarContent/>
             </Box>
         </Collapsible>
     ) : (
@@ -36,7 +44,7 @@ const AppSidebar = (props) => {
                 align='center'
                 justify='center'
             >
-                app sidebar
+                <SidebarContent/>
             </Box>
         </Layer>
     );

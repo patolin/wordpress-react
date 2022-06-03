@@ -4,7 +4,6 @@ import Logo from './assets/pato_400x400.png';
 
 const AppBar = (props) => { 
 
-   
     return (
         <Box
             tag='header'
@@ -18,8 +17,7 @@ const AppBar = (props) => {
             {...props}
         >
             <Image  width="100" src={Logo} />
-            <Heading level='3' margin='none'>
-                
+            <Heading level='3' margin='none' justify="center">
                 Mi blog personal<br/>
                 { props.children }
             </Heading>
