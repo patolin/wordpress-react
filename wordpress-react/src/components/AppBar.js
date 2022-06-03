@@ -17,8 +17,8 @@ const AppBar = (props) => {
             {...props}
         >
             <Image  width="100" src={Logo} />
-            <Heading level='3' margin='none' justify="center">
-                Mi blog personal<br/>
+            <Heading level='3' margin='none' align="center">
+                mi blog personal<br/>
                 { props.children }
             </Heading>
             <Button 

@@ -1,32 +1,34 @@
-import {Box, Card, CardBody, CardFooter, CardHeader, Grid} from 'grommet'
+import { Page, PageContent, Heading, Paragraph } from 'grommet'
 import { useApi } from '../hooks/useApi';
 import { useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
+import { BarLoader } from 'react-spinner-animated';
+
+import 'react-spinner-animated/dist/index.css';
 
 const AppBodyPostSingle = (props) => {
     let { postSlug } = useParams();
     const { data, error, loading } = useApi(props.apiEndpoints.apiBase+'/posts?slug='+postSlug);
     
     if (loading) {
-        return <p>Cargando...</p>;
+        return (<BarLoader text={"Cargando...."} />);
     }
 
     if (error !== "") {
         return <p>{error}</p>;
     }
 
-    if (data.length==1) {
+    if (data.length===1) {
         const post=data[0];
         return (
-            <>
-                <Box pad="small" gap="medium" width="full" key={post.id}>
-                        <Card pad="small" background="light-4" gap="medium" >
-                            <CardHeader><h2 dangerouslySetInnerHTML={{__html: post.title.rendered}} /></CardHeader>
-                            <CardBody><div dangerouslySetInnerHTML={{__html: post.content.rendered}} /></CardBody>
-                            <CardFooter><Link to="/" >Volver</Link></CardFooter>
-                        </Card>
-                    </Box>
-            </>
+            <Page kind="wide">
+                <PageContent background="light-3">
+                    <Heading><span dangerouslySetInnerHTML={{__html: post.title.rendered}} /></Heading>
+                    <div dangerouslySetInnerHTML={{__html: post.content.rendered}} />
+                    <Paragraph><Link to="/" >Volver</Link></Paragraph>
+                </PageContent>
+            </Page>
+            
         );
     } else {
         return (<p>No hay datos</p>);

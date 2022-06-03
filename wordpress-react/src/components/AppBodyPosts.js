@@ -1,18 +1,19 @@
 import {Box, Card, CardBody, CardFooter, CardHeader, Grid} from 'grommet'
 import { useApi } from '../hooks/useApi';
+import { BarLoader } from 'react-spinner-animated';
+
 
 import {
-    BrowserRouter as Router,
     Link,
 } from "react-router-dom"
 
-
+import 'react-spinner-animated/dist/index.css';
  
 const AppBodyPosts = (props) => {
         const { data, error, loading } = useApi(props.apiEndpoints.apiBase+'/posts/');
         
         if (loading) {
-            return <p>Cargando...</p>;
+            return (<BarLoader text={"Cargando...."} />);
         }
     
         if (error !== "") {
@@ -44,7 +45,7 @@ const AppBodyPosts = (props) => {
 }
 
 AppBodyPosts.defaultProps = {
-    title: 'Blog content',
+    title: 'Contenido:',
     defaultWidth: 8,
 }
 
