@@ -1,21 +1,44 @@
+import {Grommet, Box, ResponsiveContext} from 'grommet'
+import AppBar from './components/AppBar'
+import AppBody from './components/AppBody'
+import AppSidebar from './components/AppSidebar';
+import { useState } from 'react';
+import apiEndpoints from './constants'
 
 function App() {
+
+  const [showSidebar, setShowSidebar] = useState(false);
+  const switchSidebar = () => setShowSidebar(!showSidebar);
+  
+  const tema = {
+    global: {
+      colors: {
+        brand: '#000000',
+      },
+      font: {
+        family: 'Roboto',
+        size: '18px',
+        height: '20px',
+      },
+    },
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Grommet theme={tema} full>
+      <ResponsiveContext.Consumer>
+        {(size) => (
+        <>
+        <AppBar switchSidebarHandle={switchSidebar}>
+          www.patolin.com
+        </AppBar>
+        <Box direction='row' flex overflow={{ horizontal: 'hidden'}}>
+          <AppBody apiEndpoints={apiEndpoints}/>
+          <AppSidebar show={showSidebar} size={size} switchSidebarHandle={switchSidebar}/>
+        </Box>
+        </>
+        )}
+      </ResponsiveContext.Consumer>
+    </Grommet>
   );
 }
 
