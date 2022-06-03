@@ -4,7 +4,6 @@ export const useApi = (url) => {
     const [data, setData] = useState([]);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-    console.log(url);
     useEffect(() => {
         setLoading(true);
         

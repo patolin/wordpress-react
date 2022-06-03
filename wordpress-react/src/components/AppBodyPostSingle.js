@@ -2,7 +2,7 @@ import { Page, PageContent, Heading, Paragraph } from 'grommet'
 import { useApi } from '../hooks/useApi';
 import { useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
-import { BarLoader } from 'react-spinner-animated';
+import { DoubleOrbit as Loader } from 'react-spinner-animated';
 
 import 'react-spinner-animated/dist/index.css';
 
@@ -11,7 +11,7 @@ const AppBodyPostSingle = (props) => {
     const { data, error, loading } = useApi(props.apiEndpoints.apiBase+'/posts?slug='+postSlug);
     
     if (loading) {
-        return (<BarLoader text={"Cargando...."} />);
+        return (<Loader text={"Cargando...."} />);
     }
 
     if (error !== "") {

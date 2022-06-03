@@ -1,7 +1,7 @@
 import {Box, Card, CardBody, CardFooter, CardHeader, Grid} from 'grommet'
 import { useApi } from '../hooks/useApi';
-import { BarLoader } from 'react-spinner-animated';
-
+import { DoubleOrbit as Loader } from 'react-spinner-animated';
+import apiEndpoints from '../constants';
 
 import {
     Link,
@@ -13,7 +13,7 @@ const AppBodyPosts = (props) => {
         const { data, error, loading } = useApi(props.apiEndpoints.apiBase+'/posts/');
         
         if (loading) {
-            return (<BarLoader text={"Cargando...."} />);
+            return (<Loader text={"Cargando...."} />);
         }
     
         if (error !== "") {
@@ -31,7 +31,7 @@ const AppBodyPosts = (props) => {
                             <Card pad="small" background="light-4" gap="medium" >
                                 <CardHeader><h2 dangerouslySetInnerHTML={{__html: post.title.rendered}} /></CardHeader>
                                 <CardBody><div dangerouslySetInnerHTML={{__html: post.excerpt.rendered}} /></CardBody>
-                                <CardFooter><Link to={post.link.replace('https://patolin.com/', '/')} >Leer más</Link></CardFooter>
+                                <CardFooter><Link to={post.link.replace(apiEndpoints.apiHost, '/')} >Leer más</Link></CardFooter>
                             </Card>
                         </Box>
                     ))}

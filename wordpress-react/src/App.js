@@ -32,18 +32,20 @@ function App() {
       <ResponsiveContext.Consumer>
           {(size) => (
           <>
-          <AppBar switchSidebarHandle={switchSidebar}>
-            www.patolin.com
-          </AppBar>
-          <Box direction='row' flex overflow={{ horizontal: 'hidden'}}>
-            <Router>
-              <Routes>
-                  <Route path="/" element={<AppBodyPosts apiEndpoints={apiEndpoints}/>} />
-                  <Route path="/:postY/:postM/:postD/:postSlug" element={<AppBodyPostSingle apiEndpoints={apiEndpoints}/>} />
-                </Routes>    
-            </Router>
-            <AppSidebar show={showSidebar} size={size} switchSidebarHandle={switchSidebar}/>
-          </Box>
+          <Router>
+            <AppBar switchSidebarHandle={switchSidebar}>
+              www.patolin.com
+            </AppBar>
+            <Box direction='row' flex overflow={{ horizontal: 'hidden'}}>
+              
+                <Routes>
+                    <Route path="/" element={<AppBodyPosts apiEndpoints={apiEndpoints}/>} />
+                    <Route path="/:postY/:postM/:postD/:postSlug" element={<AppBodyPostSingle apiEndpoints={apiEndpoints}/>} />
+                  </Routes>    
+              
+              <AppSidebar show={showSidebar} size={size} switchSidebarHandle={switchSidebar}/>
+            </Box>  
+          </Router>
           </>
           )}
         
