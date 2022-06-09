@@ -12,9 +12,10 @@ jobs:
       - name: Listado de archivos en el repo
         run: |
           ls ${{ github.workspace }}
+      - name: actualiza modulos y ejecuta test
+        run: |
           cd ${{ github.workspace }}
           cd wordpress-react
-      - name: actualiza modulos y ejecuta test
           npm install
           npm test
       - run: echo "El job terminó con estado  ${{ job.status }}."
