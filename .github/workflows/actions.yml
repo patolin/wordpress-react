@@ -1,17 +1,20 @@
 name: Mi primer Github Actions Script
 on: [push]
 jobs:
-  Explore-GitHub-Actions:
+  Mi-primer-github-action:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
+      - run: echo "🎉 Iniciando el action disparado por ${{ github.event_name }} "
+      - run: echo "🐧 Se está ejecutando en el server ${{ runner.os }} para la rama ${{ github.ref }} del repo ${{ github.repository }}."
+      - name: Check out repo
         uses: actions/checkout@v3
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
+      - run: echo "💡 El repo ${{ github.repository }} se ha clonado runner."
+      - name: Listado de archivos en el repo
         run: |
           ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+          cd ${{ github.workspace }}
+          cd wordpress-react
+      - name: actualiza modulos y ejecuta test
+          npm install
+          npm test
+      - run: echo "El job terminó con estado  ${{ job.status }}."
