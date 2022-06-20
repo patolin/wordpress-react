@@ -2,7 +2,7 @@ name: Mi primer Github Actions Script
 on: [push]
 jobs:
   Mi-primer-github-action:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - run: echo "🎉 Iniciando el action disparado por ${{ github.event_name }} "
       - run: echo "🐧 Se está ejecutando en el server ${{ runner.os }} para la rama ${{ github.ref }} del repo ${{ github.repository }}."
